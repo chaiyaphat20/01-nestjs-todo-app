@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  todo-app:
+    container_name: todo-app-container
+    build: .
+    ports:
+      - '3000:3000'
