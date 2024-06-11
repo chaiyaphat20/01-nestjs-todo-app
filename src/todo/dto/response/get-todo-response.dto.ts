@@ -1,7 +1,8 @@
+
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class TodoRequestDto {
+export class TodoResponseDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
