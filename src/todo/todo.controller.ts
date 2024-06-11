@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { InsertTodoRequestDto, } from './dto/request/insert-todo-request.dto';
 import { TodoResponseDto } from './dto/response/get-todo-response.dto';
@@ -10,8 +10,13 @@ export class TodoController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  getTodo(): TodoResponseDto[] {
-    return this.todoService.getTodo();
+  getAllTodo(): TodoResponseDto[] {
+    return this.todoService.getTodos();
+  }
+
+  @Get(':id')
+  getTodoById(@Param('id') todoId: string): TodoResponseDto {
+    return this.todoService.getTodoById(todoId);
   }
 
   @Post()
