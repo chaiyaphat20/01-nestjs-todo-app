@@ -57,6 +57,11 @@ export class TodoService {
     this.todoList[index] = updatedTodo;
     return plainToInstance(UpdateTodoResponseDto, this.todoList[index])
   }
+
+  deleteTodoById(id: string) {
+    const index = this.findTodoById(id)[1];
+    this.todoList.splice(index, 1);
+  }
 }
 
 
