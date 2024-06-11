@@ -5,6 +5,8 @@ import { TodoResponseDto } from './dto/response/get-todo-response.dto';
 import { plainToInstance } from 'class-transformer';
 import { InsertTodoResponseDto } from './dto/response/insert-todo-response.dto';
 import { validateOrReject } from 'class-validator';
+import { UpdateTodoRequestDto } from './dto/request/update-todo-request.dto';
+import { UpdateTodoResponseDto } from './dto/response/update-todo-response.dto';
 
 @Injectable()
 export class TodoService {
@@ -36,6 +38,24 @@ export class TodoService {
     const newTodo = new Todo(todoId, dto.title, dto.description, dto.done);
     this.todoList.push(newTodo);
     return plainToInstance(InsertTodoResponseDto, { id: todoId });
+  }
+
+  updateTodo(
+    dto: UpdateTodoRequestDto,
+  ) {
+    const [todo, index] = this.findTodoById(dto.id);
+    const updatedTodo = { ...todo };
+    if (dto.title) {
+      updatedTodo.title = dto.title;
+    }
+    if (dto.description) {
+      updatedTodo.description = dto.description;
+    }
+    if (dto.done !== undefined) {
+      updatedTodo.done = dto.done;
+    }
+    this.todoList[index] = updatedTodo;
+    return plainToInstance(UpdateTodoResponseDto, this.todoList[index])
   }
 }
 

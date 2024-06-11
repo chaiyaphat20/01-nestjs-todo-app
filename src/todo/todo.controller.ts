@@ -1,8 +1,10 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { InsertTodoRequestDto, } from './dto/request/insert-todo-request.dto';
 import { TodoResponseDto } from './dto/response/get-todo-response.dto';
 import { InsertTodoResponseDto } from './dto/response/insert-todo-response.dto';
+import { UpdateTodoRequestDto } from './dto/request/update-todo-request.dto';
+import { UpdateTodoResponseDto } from './dto/response/update-todo-response.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -26,5 +28,14 @@ export class TodoController {
     dto: InsertTodoRequestDto,
   ): InsertTodoResponseDto {
     return this.todoService.insertTodo(dto);
+  }
+
+  @Patch()
+  @HttpCode(HttpStatus.OK)
+  updateTodo(
+    @Body()
+    dto: UpdateTodoRequestDto,
+  ): UpdateTodoResponseDto {
+    return this.todoService.updateTodo(dto);
   }
 }
