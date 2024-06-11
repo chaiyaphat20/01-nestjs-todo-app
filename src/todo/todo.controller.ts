@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/commo
 import { TodoService } from './todo.service';
 import { InsertTodoRequestDto, } from './dto/request/insert-todo-request.dto';
 import { TodoResponseDto } from './dto/response/get-todo-response.dto';
+import { InsertTodoResponseDto } from './dto/response/insert-todo-response.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -18,7 +19,7 @@ export class TodoController {
   insertTodo(
     @Body()
     dto: InsertTodoRequestDto,
-  ): string {
+  ): InsertTodoResponseDto {
     return this.todoService.insertTodo(dto);
   }
 }
