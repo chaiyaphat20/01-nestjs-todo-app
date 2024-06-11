@@ -4,7 +4,6 @@ import { InsertTodoRequestDto } from './dto/request/insert-todo-request.dto';
 import { TodoResponseDto } from './dto/response/get-todo-response.dto';
 import { plainToInstance } from 'class-transformer';
 import { InsertTodoResponseDto } from './dto/response/insert-todo-response.dto';
-import { validateOrReject } from 'class-validator';
 import { UpdateTodoRequestDto } from './dto/request/update-todo-request.dto';
 import { UpdateTodoResponseDto } from './dto/response/update-todo-response.dto';
 
